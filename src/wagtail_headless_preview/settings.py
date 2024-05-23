@@ -22,6 +22,7 @@ DEFAULTS = {
     "SERVE_BASE_URL": None,
     "REDIRECT_ON_PREVIEW": False,
     "ENFORCE_TRAILING_SLASH": True,
+    "GARBAGE_COLLECT_HOURS": 24,
 }
 
 # List of settings that have been deprecated

@@ -41,7 +41,12 @@ class PagePreview(models.Model):
 
     @classmethod
     def garbage_collect(cls):
-        yesterday = datetime.datetime.now() - datetime.timedelta(hours=24)
+        try:
+            hours = int(headless_preview_settings.GARBAGE_COLLECT_HOURS)
+        except (AttributeError, KeyError, ValueError):
+            hours = headless_preview_settings.DEFAULTS["GARBAGE_COLLECT_HOURS"]
+
+        yesterday = datetime.datetime.now() - datetime.timedelta(hours=hours)
         cls.objects.filter(created_at__lt=yesterday).delete()
 
 
